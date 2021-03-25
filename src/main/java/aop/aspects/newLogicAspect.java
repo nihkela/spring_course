@@ -12,8 +12,15 @@ public class newLogicAspect {
     public Object aroundReturnBookLogicAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         System.out.println("aroundReturnBookLogicAdvice: в библиотеку пытаются вернуть книгу");
 
-        Object targetMethodResult = proceedingJoinPoint.proceed();
 
+        Object targetMethodResult = null;
+
+        try {
+            targetMethodResult = proceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            System.out.println("aroundReturnBookLogicAdvice: было поймано исключение " + e);
+            targetMethodResult = "Неизвестное название книги";
+        }
         System.out.println("aroundReturnBookLogicAdvice: в библиотеку успешно вернули книгу");
 
         return targetMethodResult;
