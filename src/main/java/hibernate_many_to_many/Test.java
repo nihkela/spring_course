@@ -101,7 +101,7 @@ public class Test {
 
             session.beginTransaction();
 
-            Section section = session.get(Section.class, 1);
+            Section section = session.get(Section.class, 6);
             session.delete(section);
 
             session.getTransaction().commit();
